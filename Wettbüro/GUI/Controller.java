@@ -65,14 +65,14 @@ public class Controller
 			if (registrieren())
 			{
 				mainwindow.enableButtons();
-				wetten();
+				browse();
 			}
 			break;
 		case "anmelden":
 			if (anmelden())
 			{
 				mainwindow.enableButtons();
-				wetten();
+				browse();
 			}
 			break;
 		case "abmelden":
@@ -125,7 +125,7 @@ public class Controller
 				String name = registrierView.getName();
 				String pwd = registrierView.getPwd();
 				Benutzer user = new Benutzer(mail, name, pwd);
-				wettbüro.addBenutzer(user); // -> AccountBereitsVorhandenException
+				wettbüro.addBenutzer(user);
 				wettbüro.anmelden(user);
 				anmeldenErfolgreich = true;
 			} catch (BenutzerBereitsVorhandenException | UngueltigerBenutzerException e)
@@ -156,6 +156,7 @@ public class Controller
 
 	private void wetten()
 	{
+		auswahlView = new AuswahlView(mainwindow, this, wettbüro.getWettkampfliste());
 		if (auswahlView.auswahlVorhanden())
 		{
 			new HinweisView(mainwindow, "Wette gesetzt von " + wettbüro.getUserName());

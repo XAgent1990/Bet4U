@@ -1,7 +1,6 @@
-import Datenhaltung.UserDAO;
-import Datenhaltung.WetteDAO;
-import Datenhaltung.WettkampfDAO;
+import Datenhaltung.*;
 import Fachlogik.Wettbüro;
+import Fachlogik.Teamverwaltung.*;
 import Fachlogik.Wettkampfverwaltung.*;
 import Fachlogik.Wettverwaltung.*;
 import Fachlogik.Userverwaltung.*;
@@ -14,9 +13,11 @@ public class Main {
 				new WettkampfDAO());
 		Wettverwaltung wettverwaltung = new Wettverwaltung(
 				new WetteDAO());
+		Teamverwaltung teamverwaltung = new Teamverwaltung(
+				new TeamDAO());
 		Userverwaltung userverwaltung = new Userverwaltung(
 				new UserDAO());
-		Wettbüro wettbüro = new Wettbüro(userverwaltung, wettverwaltung, wettkampfverwaltung, "Bet4U");
+		Wettbüro wettbüro = new Wettbüro(userverwaltung, wettverwaltung, wettkampfverwaltung, teamverwaltung, "Bet4U");
 		Controller controller = new Controller(wettbüro);
 		controller.start();
 	}

@@ -2,7 +2,9 @@ package Fachlogik.Userverwaltung;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -10,12 +12,12 @@ import Datenhaltung.IUserDAO;
 
 public class Userverwaltung {
 
-	private SortedSet<Benutzer> benutzerListe;
+	private Set<Benutzer> benutzerListe;
 	private IUserDAO dao;
 
 	public Userverwaltung(IUserDAO dao)
 	{
-		benutzerListe = new TreeSet<Benutzer>();
+		benutzerListe = new HashSet<Benutzer>();
 		this.dao = dao;
 	}
 

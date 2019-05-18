@@ -5,7 +5,10 @@ import java.util.regex.Pattern;
 
 public class Benutzer extends User implements Serializable
 {
-	private static final long serialVersionUID = -5085600825303436591L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6447027857926278414L;
 
 	private static final String EMAIL_PATTERN = "[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z-]+(\\.[A-Za-z]+)*(\\.[A-Za-z]{2})";

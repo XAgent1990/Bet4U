@@ -29,17 +29,22 @@ public class Wettbüro
 	private Wettverwaltung wettverwaltung;
 
 	/**
-	 * Referenz auf die Wettkampfverwaltung mit den Methoden laden(), speichern()
-	 * ...
+	 * Referenz auf die Wettkampfverwaltung mit den Methoden laden(), speichern() ...
 	 */
 	private Wettkampfverwaltung wettkampfverwaltung;
 
+	/**
+	 * Referenz auf die Wettkampfverwaltung mit den Methoden laden(), speichern() ...
+	 */
+	private Teamverwaltung teamverwaltung;
+
 	public Wettbüro(Userverwaltung userverwaltung, Wettverwaltung wettverwaltung,
-			Wettkampfverwaltung wettkampfverwaltung, String betreiber)
+			Wettkampfverwaltung wettkampfverwaltung, Teamverwaltung teamverwaltung, String betreiber)
 	{
 		this.userverwaltung = userverwaltung;
 		this.wettverwaltung = wettverwaltung;
 		this.wettkampfverwaltung = wettkampfverwaltung;
+		this.teamverwaltung = teamverwaltung;
 		this.betreiber = betreiber;
 	}
 
@@ -50,7 +55,8 @@ public class Wettbüro
 		{
 			wettverwaltung.laden();
 			wettkampfverwaltung.laden();
-		} catch (IOException | WettkampfBereitsVorhandenException | WetteBereitsVorhandenException ex)
+			teamverwaltung.laden();
+		} catch (IOException | WettkampfBereitsVorhandenException | WetteBereitsVorhandenException | TeamBereitsVorhandenException ex)
 		{
 			str = ex.getMessage();
 		} finally
@@ -63,6 +69,9 @@ public class Wettbüro
 
 	public void speichern() throws IOException
 	{
+		wettverwaltung.speichern();
+		wettkampfverwaltung.speichern();
+		teamverwaltung.speichern();
 		userverwaltung.speichern();
 	}
 
