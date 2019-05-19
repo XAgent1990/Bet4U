@@ -32,7 +32,7 @@ import javax.swing.JTextField;
 public class AnmeldeView extends JDialog {
 
 	// Auﬂerhalb des Konstruktors benoetigte Textfelder als Attribute
-	private JTextField textfeldEmailAdresse;
+	private JTextField textfeldBenutzername;
 	
 	// V6.0 JPasswordFiels statt JTextField
 	private JPasswordField textfeldPasswort; 
@@ -53,13 +53,13 @@ public class AnmeldeView extends JDialog {
 
 		setLayout(new GridLayout(5, 1));
 
-		JLabel labelEmailAdresse = new JLabel("Geben Sie Ihre Emailadresse ein");
+		JLabel labelBenutzername = new JLabel("Geben Sie Ihren Benutzernamen ein");
 		JLabel labelPasswort = new JLabel("Geben Sie Ihr Passwort ein");
-		textfeldEmailAdresse = new JTextField();
+		textfeldBenutzername = new JTextField();
 		textfeldPasswort = new JPasswordField(); // V6.0
 
-		add(labelEmailAdresse);
-		add(textfeldEmailAdresse);
+		add(labelBenutzername);
+		add(textfeldBenutzername);
 		add(labelPasswort);
 		add(textfeldPasswort);
 		add(weiter);
@@ -69,7 +69,7 @@ public class AnmeldeView extends JDialog {
      	// V5.0: Beobachter registrieren, hier Controllercode in 
 		// innerer Klasse AnmeldeListener von Controller
 		Controller.AnmeldeListener al = controller.new AnmeldeListener();
-		textfeldEmailAdresse.addKeyListener(al);
+		textfeldBenutzername.addKeyListener(al);
 		textfeldPasswort.addKeyListener(al);
 		weiter.addKeyListener(al);
 		weiter.addActionListener(al);
@@ -81,8 +81,8 @@ public class AnmeldeView extends JDialog {
 		// setVisible(true);
 	}
 
-	public String getEmail() {
-		return textfeldEmailAdresse.getText();
+	public String getBenutzername() {
+		return textfeldBenutzername.getText();
 	}
 
 	// V6.0: Anpassung an JPasswordFiled. getText() ist depricated;
@@ -92,9 +92,9 @@ public class AnmeldeView extends JDialog {
 	}
 
 	private void iniAnmeldeDialog() {
-		textfeldEmailAdresse.setText("");
+		textfeldBenutzername.setText("");
 		textfeldPasswort.setText("");
-		textfeldEmailAdresse.requestFocus();
+		textfeldBenutzername.requestFocus();
 	}
 	
 	/**
@@ -104,7 +104,7 @@ public class AnmeldeView extends JDialog {
 	 */
 	void focusToNextComponent() {
 		Component c = this.getFocusOwner();
-		if (c == textfeldEmailAdresse)
+		if (c == textfeldBenutzername)
 			textfeldPasswort.requestFocus();
 		else
 			if (c == textfeldPasswort)

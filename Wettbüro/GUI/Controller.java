@@ -90,23 +90,17 @@ public class Controller
 		anmeldeView = new AnmeldeView(mainwindow, this);
 		anmeldeView.setVisible(true);
 		boolean anmeldenErfolgreich = false;
-		try
+		String name = anmeldeView.getBenutzername();
+		String pwd = anmeldeView.getPwd();
+		User user = wettbüro.getUser(name, pwd);
+		if(user == null)
 		{
-			String email = anmeldeView.getEmail();
-			String name = anmeldeView.getName();
-			String pwd = anmeldeView.getPwd();
-			Benutzer user = new Benutzer(email, name, pwd);
-			if (wettbüro.istGueltig(user))
-			{
-				anmeldenErfolgreich = true;
-				wettbüro.anmelden(user);
-			} else
-			{
-				new HinweisView(mainwindow, "Ungültige Anmeldeinformationen. Benutzername oder Passwort falsch.");
-			}
-		} catch (UngueltigerBenutzerException e)
+			new HinweisView(mainwindow, "Ungültige Anmeldeinformationen. Benutzername oder Passwort falsch.");
+		}
+		else
 		{
-			new HinweisView(mainwindow, e.toString());
+			anmeldenErfolgreich = true;
+			wettbüro.anmelden(user);
 		}
 		return anmeldenErfolgreich;
 	}
@@ -121,8 +115,8 @@ public class Controller
 		{
 			try
 			{
-				String mail = registrierView.getEmail();
 				String name = registrierView.getBenutzername();
+				String mail = registrierView.getEmail();
 				String pwd = registrierView.getPwd();
 				Benutzer user = new Benutzer(mail, name, pwd);
 				wettbüro.addBenutzer(user);

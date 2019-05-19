@@ -46,7 +46,13 @@ public class Wettbüro
 		this.wettkampfverwaltung = wettkampfverwaltung;
 		this.teamverwaltung = teamverwaltung;
 		this.betreiber = betreiber;
-		thisadd.
+		try
+		{
+			this.addAdmin(new Admin("admin", "admin"));
+		} catch (AdminBereitsVorhandenException e)
+		{
+			System.out.println("Error: Admin konnte nicht hinzugefügt werden!");
+		}
 	}
 
 	public void laden() throws IOException, BenutzerBereitsVorhandenException, ClassNotFoundException
@@ -65,6 +71,9 @@ public class Wettbüro
 			userverwaltung.laden();
 			if (str != null)
 				throw new IOException(str);
+			System.out.println("Adminaccounts:");
+			for(Admin a : userverwaltung.getAdminliste())
+				System.out.println("Benutzername: " + a.getName() + "\nPasswort: " + a.getPwd());
 		}
 	}
 
@@ -91,22 +100,24 @@ public class Wettbüro
 		aktuellerUser = null;
 	}
 
+	public User getUser(String name, String pwd)
+	{
+		return userverwaltung.getUser(name, pwd);
+	}
+
 	public String getUserName()
 	{
 		return aktuellerUser.getName();
 	}
 
-	public boolean istGueltig(User user)
-	{
-		if(user instanceof Benutzer)
-			return userverwaltung.istGueltig((Benutzer)user);
-		else
-			return false;
-	}
-
 	public void addBenutzer(Benutzer b) throws BenutzerBereitsVorhandenException
 	{
 		userverwaltung.addBenutzer(b);
+	}
+
+	public void addAdmin(Admin a) throws AdminBereitsVorhandenException
+	{
+		userverwaltung.addAdmin(a);
 	}
 
 	public List<Wettkampf> getWettkampfliste()

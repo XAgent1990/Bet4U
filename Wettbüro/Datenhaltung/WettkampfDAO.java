@@ -32,7 +32,6 @@ public class WettkampfDAO implements IWettkampfDAO {
 				w = (Wettkampf)os.readObject();
 			} catch (EOFException e)
 			{
-				System.out.println("EOF!");
 				w = null;
 			}
 		}

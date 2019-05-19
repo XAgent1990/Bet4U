@@ -33,7 +33,6 @@ public class WetteDAO implements IWetteDAO
 				w = (Wette)os.readObject();
 			} catch (EOFException e)
 			{
-				System.out.println("EOF!");
 				w = null;
 			}
 		}

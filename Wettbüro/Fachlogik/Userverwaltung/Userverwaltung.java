@@ -10,12 +10,14 @@ import Datenhaltung.IUserDAO;
 
 public class Userverwaltung {
 
-	private Set<Benutzer> benutzerListe;
+	private Set<User> benutzerListe;
+	private Set<User> adminListe;
 	private IUserDAO dao;
 
 	public Userverwaltung(IUserDAO dao)
 	{
-		benutzerListe = new HashSet<Benutzer>();
+		benutzerListe = new HashSet<User>();
+		adminListe = new HashSet<User>();
 		this.dao = dao;
 	}
 
@@ -41,8 +43,8 @@ public class Userverwaltung {
 	public void speichern() throws IOException
 	{
 		List<Benutzer> liste = new ArrayList<>();
-		for (Benutzer b : benutzerListe)
-			liste.add(b);
+		for (User b : benutzerListe)
+			liste.add((Benutzer)b);
 		dao.speichern(liste);
 	}
 
@@ -54,19 +56,55 @@ public class Userverwaltung {
 	public List<Benutzer> getBenutzerliste()
 	{
 		ArrayList<Benutzer> benutzerLi = new ArrayList<Benutzer>();
-		for (Benutzer benutzer : benutzerListe)
+		for (User benutzer : benutzerListe)
 		{
-			benutzerLi.add(benutzer);
+			benutzerLi.add((Benutzer)benutzer);
 		}
 		return benutzerLi;
 	}
 
+	public List<Admin> getAdminliste()
+	{
+		ArrayList<Admin> adminLi = new ArrayList<Admin>();
+		for (User admin : adminListe)
+		{
+			adminLi.add((Admin)admin);
+		}
+		return adminLi;
+	}
+
+	public User getUser(String name, String pwd)
+	{
+		for(User u : adminListe)
+		{
+			if(((Admin)u).getName().equals(name) && ((Admin)u).getPwd().equals(pwd))
+				return u;
+		}
+		for(User u : benutzerListe)
+		{
+			if(((Benutzer)u).getName().equals(name) && ((Benutzer)u).getPasswort().equals(pwd))
+				return u;
+		}
+		return null;
+	}
+
 	public void addBenutzer(Benutzer benutzer) throws BenutzerBereitsVorhandenException
 	{
-		System.out.println("Füge " + benutzer + " hinzu");
-		if (benutzer == null || !(benutzer instanceof Benutzer))
+		if (benutzer == null)
 		{
 			return;
+		}
+		for(User u : adminListe)
+		{
+			if(((Admin)u).getName().equals(benutzer.getName()))
+				throw new BenutzerBereitsVorhandenException("Benutzername bereits vergeben!\n"
+						+ "Bitte wählen sie einen anderen.");
+		}
+		for(User u : benutzerListe)
+		{
+			if(((Benutzer)u).getName().equals(benutzer.getName()))
+				throw new BenutzerBereitsVorhandenException("Benutzername bereits vergeben!\n"
+						+ "Bitte wählen sie einen anderen.");
 		}
 		if (!benutzerListe.add(benutzer))
 		{
@@ -74,18 +112,29 @@ public class Userverwaltung {
 					+ "da bereits ein Benutzer mit derselben ID existiert:\n" + benutzer.toString();
 			throw new BenutzerBereitsVorhandenException(str);
 		}
-		System.out.println(benutzer + " hinzugefügt");
 	}
 
 	public boolean istGueltig(Benutzer benutzer)
 	{
-		System.out.println("check");
-		for(Benutzer u : benutzerListe)
+		for(User u : benutzerListe)
 		{
-			System.out.println(u);
 			if(benutzer.match(u))
 				return true;
 		}
 		return false;
+	}
+
+	public void addAdmin(Admin admin) throws AdminBereitsVorhandenException
+	{
+		if (admin == null)
+		{
+			return;
+		}
+		if (!adminListe.add(admin))
+		{
+			String str = "Admin kann nicht hinzugefügt werden,\n"
+					+ "da bereits ein Admin mit derselben ID existiert:\n" + admin.toString();
+			throw new AdminBereitsVorhandenException(str);
+		}
 	}
 }

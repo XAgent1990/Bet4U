@@ -25,13 +25,13 @@ public class UserDAO implements IUserDAO
 		{
 			liste.add(b);
 			System.out.println(
-					"Deserialisiert:\nEmail: " + b.getEmailAdresse() + "\nPasswort: " + b.getPasswort() + '\n');
+					"Deserialisiert:\nBenutzername: " + b.getName() + "\nEmail: " +
+							b.getEmailAdresse() + "\nPasswort: " + b.getPasswort() + '\n');
 			try
 			{
 				b = (Benutzer)os.readObject();
 			} catch (EOFException e)
 			{
-				System.out.println("EOF!");
 				b = null;
 			}
 		}
