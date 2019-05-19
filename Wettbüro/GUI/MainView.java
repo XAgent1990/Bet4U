@@ -37,8 +37,7 @@ public class MainView extends JFrame {
 	private JButton registrieren;
 	private JButton anmelden;
 	private JButton abmelden;
-	private JButton zumEinkaufswagen;
-	private JButton zurKasse;
+	private JButton meineWetten;
 
 	private JPanel buttonPanel; // Zur Aufnahme der Buttons
 
@@ -58,28 +57,22 @@ public class MainView extends JFrame {
 		
 		setVisible(true);  
 	}
-
-	// V6.0 Buttons jetzt zusätzlich mit Icons. Icons zu finden 
-	// in Verzeichnis images
+	
 	private void fuelleButtonPanel() {
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 5));
 		
-		registrieren = new JButton("registrieren", new ImageIcon("images/login.png"));
+		registrieren = new JButton("registrieren");
 		buttonPanel.add(registrieren);
 	
-		anmelden = new JButton("anmelden", new ImageIcon("images/login.png"));
+		anmelden = new JButton("anmelden");
 		buttonPanel.add(anmelden);
 
-		abmelden = new JButton("abmelden", new ImageIcon("images/logout.png"));
+		abmelden = new JButton("abmelden");
 		buttonPanel.add(abmelden);
 
-		zumEinkaufswagen = new JButton("zumEinkaufswagen", 
-				                       new ImageIcon("images/warenkorb.png"));
-		buttonPanel.add(zumEinkaufswagen);
-
-		zurKasse = new JButton("zurKasse");
-		buttonPanel.add(zurKasse);
+		meineWetten = new JButton("meine Wetten");
+		buttonPanel.add(meineWetten);
 
 		iniButtons();
 	}
@@ -89,8 +82,7 @@ public class MainView extends JFrame {
 		registrieren.setEnabled(true);
 		anmelden.setEnabled(true);
 		abmelden.setEnabled(false);
-		zumEinkaufswagen.setEnabled(false);
-		zurKasse.setEnabled(false);
+		meineWetten.setEnabled(false);
 	}
 	
 	// V5.0: Zur Aktivierung der Buttons nach erfolgreicher 
@@ -99,8 +91,7 @@ public class MainView extends JFrame {
 		registrieren.setEnabled(false);
 		anmelden.setEnabled(false);
 		abmelden.setEnabled(true);
-		zumEinkaufswagen.setEnabled(true);
-		zurKasse.setEnabled(true);
+		meineWetten.setEnabled(true);
 	}
 	
 	/*********** Verbindung zwischen View und Controller ***********/
@@ -111,8 +102,7 @@ public class MainView extends JFrame {
 		registrieren.addActionListener(hl);
 		anmelden.addActionListener(hl);
 		abmelden.addActionListener(hl);
-		zumEinkaufswagen.addActionListener(hl);
-		zurKasse.addActionListener(hl);
+		meineWetten.addActionListener(hl);
 		this.addWindowListener(hl);
 	}
 	

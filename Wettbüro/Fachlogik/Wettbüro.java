@@ -120,6 +120,11 @@ public class Wettbüro
 		userverwaltung.addAdmin(a);
 	}
 
+	private void addWettkampf(Wettkampf wk) throws WettkampfBereitsVorhandenException
+	{
+		wettkampfverwaltung.addWettkampf(wk);
+	}
+
 	public List<Wettkampf> getWettkampfliste()
 	{
 		return wettkampfverwaltung.getWettkampfliste();

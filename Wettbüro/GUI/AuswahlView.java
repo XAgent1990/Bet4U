@@ -34,7 +34,7 @@ public class AuswahlView extends JInternalFrame
 
 	public AuswahlView(Window owner, Controller controller, java.util.List<Wettkampf> wettkampfliste)
 	{
-		super("Artikelliste", false, // resizable
+		super("Wettkampfliste", false, // resizable
 				false, // closable
 				false, // maximizable
 				false);// iconifiable
@@ -103,6 +103,13 @@ public class AuswahlView extends JInternalFrame
 			zeile[1] = wettkampf.getBezeichnung();
 			tabellenModell.addRow(zeile);
 		}
+		System.out.println("Testweise Platzhalterwettkämpfe");
+		zeile[0] = "Spiel";
+		zeile[1] = "Platzhalterteam A vs. Platzhalterteam B";
+		tabellenModell.addRow(zeile);
+		zeile[0] = "Tunier";
+		zeile[1] = "Platzhalterweltmeisterschaft";
+		tabellenModell.addRow(zeile);
 	}
 	
 	private int getListSelection()

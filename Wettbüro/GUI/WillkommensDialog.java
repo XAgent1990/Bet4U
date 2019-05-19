@@ -1,7 +1,10 @@
 package GUI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -15,12 +18,12 @@ public class WillkommensDialog extends JDialog {
 		super(owner);
 		setTitle(text);
 		setModal(true);
-		setSize(200, 150);
+		setSize(332, 246);
 		setLocationRelativeTo(owner);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
  
 		// Grafik einbinden
-		add("Center", new WillkommensGrafik());
+		add("Center", new JLabel(new ImageIcon("images/bet4u.png")));
 		
 		setVisible(true);
 	}
