@@ -29,7 +29,7 @@ public class Wettkampfverwaltung
 			for (Wettkampf w : liste)
 				this.addWettkampf(w);
 
-		} catch (WettkampfBereitsVorhandenException ex)
+		} catch (WettkampfBereitsVorhandenException | ClassNotFoundException ex)
 		{
 			throw new WettkampfBereitsVorhandenException(
 					"Fehler beim Laden der Wettkampfdaten. Es gibt zwei Wettkampf mit derselben ID!");

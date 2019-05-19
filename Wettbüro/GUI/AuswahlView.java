@@ -108,7 +108,8 @@ public class AuswahlView extends JInternalFrame
 	private int getListSelection()
 	{
 		int selected = wettkampfTabelle.getSelectedRow();
-		selected = wettkampfTabelle.convertRowIndexToModel(selected);
+		if(selected != -1)
+			selected = wettkampfTabelle.convertRowIndexToModel(selected);
 		return selected;
 	}
 

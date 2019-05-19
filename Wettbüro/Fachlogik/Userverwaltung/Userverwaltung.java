@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import Datenhaltung.IUserDAO;
 
@@ -65,20 +63,26 @@ public class Userverwaltung {
 
 	public void addBenutzer(Benutzer benutzer) throws BenutzerBereitsVorhandenException
 	{
+		System.out.println("Füge " + benutzer + " hinzu");
 		if (benutzer == null || !(benutzer instanceof Benutzer))
+		{
 			return;
+		}
 		if (!benutzerListe.add(benutzer))
 		{
 			String str = "Benutzer kann nicht hinzugefügt werden,\n"
 					+ "da bereits ein Benutzer mit derselben ID existiert:\n" + benutzer.toString();
 			throw new BenutzerBereitsVorhandenException(str);
 		}
+		System.out.println(benutzer + " hinzugefügt");
 	}
 
 	public boolean istGueltig(Benutzer benutzer)
 	{
+		System.out.println("check");
 		for(Benutzer u : benutzerListe)
 		{
+			System.out.println(u);
 			if(benutzer.match(u))
 				return true;
 		}

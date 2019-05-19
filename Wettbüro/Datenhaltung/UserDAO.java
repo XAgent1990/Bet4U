@@ -1,5 +1,6 @@
 package Datenhaltung;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,13 +20,20 @@ public class UserDAO implements IUserDAO
 		List<Benutzer> liste = new ArrayList<>();
 		ObjectInputStream os = new ObjectInputStream(new FileInputStream("Benutzer.ser"));
 		Benutzer b;
-		b = (Benutzer) os.readObject();
+		b = (Benutzer)os.readObject();
 		while (b != null)
 		{
 			liste.add(b);
 			System.out.println(
 					"Deserialisiert:\nEmail: " + b.getEmailAdresse() + "\nPasswort: " + b.getPasswort() + '\n');
-			b = (Benutzer) os.readObject();
+			try
+			{
+				b = (Benutzer)os.readObject();
+			} catch (EOFException e)
+			{
+				System.out.println("EOF!");
+				b = null;
+			}
 		}
 		os.close();
 		return liste;

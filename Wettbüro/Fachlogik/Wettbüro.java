@@ -46,6 +46,7 @@ public class Wettbüro
 		this.wettkampfverwaltung = wettkampfverwaltung;
 		this.teamverwaltung = teamverwaltung;
 		this.betreiber = betreiber;
+		thisadd.
 	}
 
 	public void laden() throws IOException, BenutzerBereitsVorhandenException, ClassNotFoundException

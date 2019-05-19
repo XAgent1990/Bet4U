@@ -51,7 +51,7 @@ public class Controller
 			wettbüro.laden();
 			String text = "Willkommen bei " + wettbüro.getBetreiber() + "!";
 			new WillkommensDialog(mainwindow, text);
-		} catch (Exception e)
+		} catch (ClassNotFoundException | IOException | BenutzerBereitsVorhandenException e)
 		{
 			new HinweisView(mainwindow, e.getMessage());
 		}
@@ -122,7 +122,7 @@ public class Controller
 			try
 			{
 				String mail = registrierView.getEmail();
-				String name = registrierView.getName();
+				String name = registrierView.getBenutzername();
 				String pwd = registrierView.getPwd();
 				Benutzer user = new Benutzer(mail, name, pwd);
 				wettbüro.addBenutzer(user);
@@ -139,7 +139,6 @@ public class Controller
 	private void browse()
 	{
 		auswahlView = new AuswahlView(mainwindow, this, wettbüro.getWettkampfliste());
-		// V4.0 auswahlView dem Hauptfenster hinzufügen (Zentrum)
 		mainwindow.add(auswahlView);
 	}
 
@@ -152,16 +151,6 @@ public class Controller
 
 		} else
 			new HinweisView(mainwindow, "Keinen Wettkampf ausgewählt!");
-	}
-
-	private void wetten()
-	{
-		auswahlView = new AuswahlView(mainwindow, this, wettbüro.getWettkampfliste());
-		if (auswahlView.auswahlVorhanden())
-		{
-			new HinweisView(mainwindow, "Wette gesetzt von " + wettbüro.getUserName());
-			auswahlView.clearSelection();
-		}
 	}
 
 	private void abmelden()
@@ -276,7 +265,6 @@ public class Controller
 	{
 		public void actionPerformed(ActionEvent evt)
 		{
-			wetten();
 			wettView.setVisible(false);
 			wettView.dispose();
 		}

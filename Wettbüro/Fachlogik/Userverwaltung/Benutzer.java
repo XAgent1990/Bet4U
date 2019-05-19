@@ -16,12 +16,10 @@ public class Benutzer extends User implements Serializable
 	private String emailAdresse = null;
 	private String benutzername = null;
 	private String passwort = null;
-	private String vorname = null;
-	private String nachname = null;
 
 	public Benutzer(String emailAdresse,String benutzername, String passwort) throws UngueltigerBenutzerException {
 		setEmailAdresse(emailAdresse);
-		setBenutzername(benutzername);
+		setName(benutzername);
 		setPasswort(passwort);
 	}
 
@@ -60,8 +58,8 @@ public class Benutzer extends User implements Serializable
 	 */
 	public boolean match(Benutzer b)
 	{
-		String st = emailAdresse + passwort;
-		String kst = b.emailAdresse + b.passwort;
+		String st = benutzername + passwort;
+		String kst = b.benutzername + b.passwort;
 		return st.equals(kst);
 	}
 
@@ -91,27 +89,7 @@ public class Benutzer extends User implements Serializable
 
 	public String toString()
 	{
-		return "Emailadresse = " + emailAdresse + ", Passwort = " + passwort;
-	}
-
-	public String getVorname()
-	{
-		return vorname;
-	}
-
-	public void setVorname(String vorname)
-	{
-		this.vorname = vorname;
-	}
-
-	public String getNachname()
-	{
-		return nachname;
-	}
-
-	public void setNachname(String nachname)
-	{
-		this.nachname = nachname;
+		return "Benutzername" + benutzername + ", Emailadresse = " + emailAdresse + ", Passwort = " + passwort;
 	}
 
 	public String getName()
@@ -119,7 +97,7 @@ public class Benutzer extends User implements Serializable
 		return benutzername;
 	}
 
-	public void setBenutzername(String benutzername)
+	public void setName(String benutzername)
 	{
 		this.benutzername = benutzername;
 	}

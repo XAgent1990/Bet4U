@@ -29,7 +29,7 @@ public class Wettverwaltung
 			for (Wette w : liste)
 				this.addWette(w);
 
-		} catch (WetteBereitsVorhandenException ex)
+		} catch (WetteBereitsVorhandenException | ClassNotFoundException ex)
 		{
 			throw new WetteBereitsVorhandenException(
 					"Fehler beim Laden der Wettedaten. Es gibt zwei Wette mit derselben ID!");

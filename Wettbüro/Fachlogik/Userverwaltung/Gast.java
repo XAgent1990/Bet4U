@@ -1,12 +1,12 @@
 package Fachlogik.Userverwaltung;
 
-public class Gast extends User {
-
+public class Gast extends User
+{
+	private final String name = "Gast";
+	
 	@Override
 	public String getName()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
-
 }

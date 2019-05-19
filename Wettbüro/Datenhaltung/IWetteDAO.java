@@ -1,5 +1,7 @@
 package Datenhaltung;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import Fachlogik.Wettverwaltung.Wette;
@@ -7,8 +9,8 @@ import Fachlogik.Wettverwaltung.Wette;
 public interface IWetteDAO
 {
 
-	List<Wette> laden();
+	List<Wette> laden() throws IOException, ClassNotFoundException;
 
-	void speichern(List<Wette> liste);
+	void speichern(List<Wette> liste) throws FileNotFoundException, IOException;
 
 }

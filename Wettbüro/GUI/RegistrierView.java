@@ -31,7 +31,7 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class RegistrierView extends JDialog {
 
-	private JTextField tf_KundenName = new JTextField();
+	private JTextField tf_Benutzername = new JTextField();
 	private JTextField tf_EmailAdresse = new JTextField();
 	
 	private JPasswordField tf_Passwort = new JPasswordField();
@@ -53,14 +53,14 @@ public class RegistrierView extends JDialog {
 
 		setLayout(new GridLayout(9, 1));
 
-		JLabel labelKundenName = new JLabel("Geben Sie Ihren Namen ein");
+		JLabel labelBenutzername = new JLabel("Geben Sie Ihren Benutzeramen ein");
 		JLabel labelEmailAdresse = new JLabel("Geben Sie Ihre Emailadresse ein");
 		JLabel labelPasswort = new JLabel("Geben Sie Ihr Passwort ein");
 		JLabel lPasswortWiederholung = new JLabel("Passwort wiederholen");
 
 
-		add(labelKundenName);
-		add(tf_KundenName);
+		add(labelBenutzername);
+		add(tf_Benutzername);
 		
 		add(labelEmailAdresse);
 		add(tf_EmailAdresse);
@@ -78,7 +78,7 @@ public class RegistrierView extends JDialog {
      	// V5.0: Beobachter registrieren, hier Controllercode in 
 		// innerer Klasse AnmeldeListener von Controller
 		Controller.RegistrierListener al = controller.new RegistrierListener();
-		tf_KundenName.addKeyListener(al);
+		tf_Benutzername.addKeyListener(al);
 		tf_EmailAdresse.addKeyListener(al);
 		tf_Passwort.addKeyListener(al);
 		tf_passwortWiederholung.addKeyListener(al);
@@ -93,8 +93,8 @@ public class RegistrierView extends JDialog {
 		// setVisible(true);
 	}
 
-	public String getKundenName() {
-		return tf_KundenName.getText();
+	public String getBenutzername() {
+		return tf_Benutzername.getText();
 	}
 	
 	public String getEmail() {
@@ -108,11 +108,11 @@ public class RegistrierView extends JDialog {
 	}
 
 	private void iniRegistrierDialog() {
-		tf_KundenName.setText("");
+		tf_Benutzername.setText("");
 		tf_EmailAdresse.setText("");
 		tf_Passwort.setText("");
 		tf_passwortWiederholung.setText("");
-		tf_KundenName.requestFocus();
+		tf_Benutzername.requestFocus();
 	}
 	
 	/**
@@ -122,7 +122,7 @@ public class RegistrierView extends JDialog {
 	 */
 	void focusToNextComponent() {
 		Component c = this.getFocusOwner();
-		if (c == tf_KundenName)
+		if (c == tf_Benutzername)
 			tf_EmailAdresse.requestFocus();
 		if (c == tf_EmailAdresse)
 			tf_Passwort.requestFocus();
@@ -138,7 +138,7 @@ public class RegistrierView extends JDialog {
 	
 	boolean textFieldsOK() {
 		boolean OK = true;
-		OK = OK & textFieldOK(tf_KundenName) & textFieldOK(tf_EmailAdresse)
+		OK = OK & textFieldOK(tf_Benutzername) & textFieldOK(tf_EmailAdresse)
 				& textFieldOK(tf_Passwort) & textFieldOK(tf_passwortWiederholung);
 		return OK;
 	}
